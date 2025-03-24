@@ -9,12 +9,12 @@ on:
         required: true
         type: choice
         options:
-          - stage-1
-          - stage-2
+          - staging
+          - prod
 
 jobs:
   deploy-staging:
-    if: inputs.deployment_stage == 'stage-1'  # ✅ Runs only if stage-1 is selected
+    if: inputs.deployment_stage == 'staging'  # ✅ Runs only if stage-1 is selected
     environment: staging
     runs-on: ubuntu-latest
 
@@ -23,7 +23,7 @@ jobs:
       run: echo "Deploying to Staging Environment
 
   deploy-prod:
-    if: inputs.deployment_stage == 'stage-2'  # ✅ Runs only if stage-1 is selected
+    if: inputs.deployment_stage == 'prod'  # ✅ Runs only if stage-1 is selected
     environment: prod
     runs-on: ubuntu-latest
 
