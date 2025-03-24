@@ -3,30 +3,29 @@ name: Deploy WAR to Azure Web Apps
 on:
   workflow_dispatch:
     inputs:
-      
       environment:
         description: 'Environment to deploy against (staging or prod)'
         required: true
         type: choice
         options:
-          - staging
-          - prod
+          - stage-1
+          - stage-2
 
 jobs:
   deploy-staging:
-    if: inputs.deployment_stage == 'staging'  # ✅ Runs only if stage-1 is selected
+    if: inputs.environment == 'stage-1'  # ✅ Runs only if stage-1 is selected
     environment: staging
     runs-on: ubuntu-latest
 
     steps:
-    - name: Echo message for Staging
-      run: echo "Deploying to Staging Environment
+      - name: Echo message for Staging
+        run: echo "Deploying to Staging Environment"
 
   deploy-prod:
-    if: inputs.deployment_stage == 'prod'  # ✅ Runs only if stage-1 is selected
+    if: inputs.environment == 'stage-2'  # ✅ Runs only if stage-2 is selected
     environment: prod
     runs-on: ubuntu-latest
 
     steps:
-    - name: Echo message for Staging
-      run: echo "Deploying to prod Environment
+      - name: Echo message for Prod
+        run: echo "Deploying to Prod Environment"
